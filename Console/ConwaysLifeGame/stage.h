@@ -21,10 +21,10 @@ private:
 	ClgMap stageMapB;
 	int state;
 	int count;
-
-	ClgStage(void) {
-		
-	}
+	
+public:
+	ClgStage(void): initMap(64, 64), stageMapA(64, 64), stageMapB(64, 64) {}
+	~ClgStage(void) {}
 
 	void start(void);
 	void stop(void);

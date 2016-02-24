@@ -1,9 +1,7 @@
 #include "gui.h"
 #include <Windows.h>
 
-#define ANSWER_YES	0x01
-#define ANSWER_NO	0x02
-#define ANSWER_ERR	-1
+
 
 void gotoxy(int x, int y)
 {

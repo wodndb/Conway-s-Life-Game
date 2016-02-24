@@ -131,6 +131,29 @@ public:
 	void setWidth(unsigned int _width) { this->width = _width; }
 	void setHeight(unsigned int _height) { this->height = _height; }
 	void setData(char** _data) { this->data = _data; }
+	void setMap(ClgMap* mapData) {
+		// 맵 데이터가 널값이 아니라면 데이터 참조 허용
+		if(mapData != NULL) {
+			// 맵 크기가 다르면 기존 맵 데이터 해제하고 크기에 맞게 재할당
+			if(width != mapData->getWidth() || height != mapData->getHeight()) {
+				// 기존 메모리 해제
+				for(unsigned int y; y < this->height; y++) {
+					delete[] this->data[y];
+				}
+				delete[] this->data;
+				// 맵 크기 재설정
+				this->width = mapData->getWidth();
+				this->weight = mapData->getWidth();
+				// 신규 메모리 할당
+				this->data = new char*[this->height];
+				for(unsigned int i = 0; i < this->height; i++) {
+					this->data = new char[this->weight];
+				}
+			}
+			// 맵 데이터 초기화
+			this->clearData();
+		}
+	}
 
 	//**********************************************************************
 	// General perpose function set

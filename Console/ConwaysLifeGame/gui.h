@@ -1,6 +1,10 @@
 #ifndef CLG_GUI_H
 #define CLG_GUI_H
 
+#define ANSWER_YES	0x01
+#define ANSWER_NO	0x02
+#define ANSWER_ERR	-1
+
 #include "map.h"
 
 void gotoxy(int x, int y);

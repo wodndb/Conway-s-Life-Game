@@ -11,6 +11,6 @@ void gotoxy(int x, int y);
 void printMap(ClgMap &map);
 void changeWindowSize(int width, int height);
 int guiYNQuestion(char* message);
-char* guiInputString(char* message);
+char* guiInputString(char* target, char* message);
 
 #endif /*CLG_GUI_H*/

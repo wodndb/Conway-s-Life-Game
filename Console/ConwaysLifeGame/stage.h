@@ -23,7 +23,7 @@ private:
 	int count;
 	
 public:
-	ClgStage(void): initMap(64, 64), stageMapA(64, 64), stageMapB(64, 64) {}
+	ClgStage(void): initMap(32, 32), stageMapA(32, 32), stageMapB(32, 32) {}
 	~ClgStage(void) {}
 
 	void start(void);

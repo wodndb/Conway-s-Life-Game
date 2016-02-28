@@ -10,15 +10,15 @@ void ClgStage::start(void) {
 	if(openMapAns == ANSWER_YES) {
 		printf("기존 맵을 불러옵니다.");
 		
-		sscanf(mapName, "%s", guiYNQuestion("맵 파일명을 입력해주세요\n"));
+		sscanf(mapName, "%s", guiYNQuestion("맵 파일명을 입력해주세요"));
 		this->initMap.setName(mapName);
 		this->initMap.clearData();
 		this->initMap.loadData();
 	}
 	else if(openMapAns == ANSWER_NO) {
 		printf("신규 맵을 작성합니다.\n");
-
-		sscanf(mapName, "%s", guiYNQuestion("신규 맵의 이름을 입력해주세요\n"));
+		fflush(stdin);
+		guiInputString(mapName, "신규 맵의 이름을 입력해주세요");
 		this->initMap.setName(mapName);
 		this->initMap.clearData();
 	}
@@ -29,6 +29,10 @@ void ClgStage::start(void) {
 
 	// 맵 버퍼에 현재 맵의 초기 정보를 작성
 	this->state = 0x01;
+
+	changeWindowSize(66, 33);
+	printMap(this->initMap);
+	
 }
 
 void ClgStage::stop(void) {

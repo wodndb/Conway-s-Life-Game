@@ -1,8 +1,6 @@
 #include "gui.h"
 #include <Windows.h>
 
-
-
 void gotoxy(int x, int y)
 {
     COORD Cur;
@@ -40,14 +38,18 @@ void changeWindowSize(int width, int height) {
 	}
 }
 
-char* guiInputString(char* message) {
-	char buf[100];
-	system("cls");
-	printf("%s\n", message);
-	printf(">");
-	scanf("%s", buf);
+char* guiInputString(char* target, char* message) {
+	if(target != NULL) {
+		system("cls");
+		printf("%s\n", message);
+		printf(">");
+		scanf("%s", target);
+	}
+	else {
+		target = NULL;
+	}
 
-	return buf;
+	return target;
 }
 
 int guiYNQuestion(char* message) {

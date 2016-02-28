@@ -143,11 +143,11 @@ public:
 				delete[] this->data;
 				// 맵 크기 재설정
 				this->width = mapData->getWidth();
-				this->weight = mapData->getWidth();
+				this->height = mapData->getHeight();
 				// 신규 메모리 할당
 				this->data = new char*[this->height];
 				for(unsigned int i = 0; i < this->height; i++) {
-					this->data = new char[this->weight];
+					this->data[i] = new char[this->height];
 				}
 			}
 			// 맵 데이터 초기화

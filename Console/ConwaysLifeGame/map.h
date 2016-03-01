@@ -110,12 +110,29 @@ public:
 	}
 
 	//**********************************************************************
+	// Forced Constructor Set for Array
+	//**********************************************************************
+	void setClgMap(unsigned int _width, unsigned int _height) {
+		sprintf_s(name, "noname");
+		this->width = _width;
+		this->height = _height;
+		this->data = new char*[this->height];
+		for(unsigned int i = 0; i < this->height; i++) {
+			this->data[i] = new char[this->width];
+		}
+		this->clearData();
+	}
+
+	//**********************************************************************
 	// Get function set
 	//**********************************************************************
 	char* getName(void) { return (char*)this->name; }
 	unsigned int getWidth(void) { return this->width; }
 	unsigned int getHeight(void) { return this->height; }
 	char** getData(void) { return this->data; }
+	char getData(unsigned int x, unsigned int y) {
+		return *(*(this->data + y) + x);
+	}
 
 	//**********************************************************************
 	// Set function set

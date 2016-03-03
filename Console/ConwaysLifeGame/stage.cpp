@@ -90,16 +90,27 @@ void ClgStage::stop(void) {
 
 void ClgStage::update(void) {
 	// 게임을 진행하는 단계
+	// 처음에는 Queue에 넣어서 for문 최소한으로 할려고 했는데
+	// 셀의 인접 셀까지 같이 파악해야 해서 Scan 기능이 복잡해졌다. 스캔을 좀 더 잘 할 수 있도록 해야한다.
+	// 또한 업데이트 도중에도 다음에 체크할 셀을 등록해야 하는데 이것도 상당한 일이 될 것 같다.
 	deque<unsigned int>::iterator iterCoordX = this->dqCoordCellX.begin();
 	deque<unsigned int>::iterator iterCoordY = this->dqCoordCellY.begin();
+	int cntLiveCell = 0;
 
 	// 문제 발생: 음수가 나올 수가 있다.
 	while(iterCoordX != this->dqCoordCellX.end() && iterCoordY != this->dqCoordCellY.end()) {
+		cntLiveCell = 0;
 		for(int y = *iterCoordY - 1; y <= *iterCoordY + 1; y++) {
 			for(int x = *iterCoordX - 1; x <= *iterCoordX + 1; x++) {
 				if(*iterCoordY >= 0 && *iterCoordX >= 0 && *iterCoordY < this->initMap.getHeight() && *iterCoordX < this->initMap.getWidth()) {
-					
+					cntLiveCell += (this->stageMapBuf[this->getMapBufferId()].getData(x, y) & 0x01);
 				}
+				cntLiveCell -= (this->stageMapBuf[this->getMapBufferId()].getData(*iterCoordX, *iterCoordY) & 0x01);
+			}
+		}
+		if(this->stageMapBuf[this->getMapBufferId()].getData(*iterCoordX, *iterCoordY) & 0x01) {
+			if(cntLiveCell == 2 || cntLiveCell == 2) {
+				
 			}
 		}
 	}

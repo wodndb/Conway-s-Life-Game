@@ -30,7 +30,7 @@ void ClgStage::scanCellData(ClgMap* mapData) {
 		int height = mapData->getHeight();
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
-				if(mapData->getData(x, y) == 1) {
+				if(mapData->getData(x, y) && 0x01) {
 					this->dqCoordCellX.push_back(x);
 					this->dqCoordCellY.push_back(y);
 				}
